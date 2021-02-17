@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CheckOut {
 
@@ -8,7 +9,7 @@ public class CheckOut {
 
     public CheckOut(ArrayList<Cashier> cashierList){
         this.cashiers = cashierList;
-        this.myself = new Customer(5);
+        this.myself = new Customer(true);
         this.goToCashierNum = CashierWithLessCustomers();
     }
 
@@ -31,4 +32,18 @@ public class CheckOut {
 
     public int getItemsNum(){return myself.getItemsNum();}
 
+    public void goCheckOut(){
+
+        Iterator<Cashier> iterator = cashiers.iterator();
+
+        while(iterator.hasNext()){
+            Cashier cashier = iterator.next();
+            System.out.println("Cashier number " + cashier.getCashierNum() + " has " +
+                    cashier.getCustomerTotal() + " customers");
+        }
+
+        System.out.println("You have " + myself.getItemsNum() + " items");
+        System.out.println("Please go to Cashier Number " + goToCashierNum );
+
+    }
 }
